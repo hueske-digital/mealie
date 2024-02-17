@@ -1,0 +1,50 @@
+version: "3.5"
+
+services:
+  app:
+    image: ghcr.io/mealie-recipes/mealie
+    restart: unless-stopped
+    environment:
+      - ALLOW_SIGNUP=false
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Berlin
+      - BASE_URL
+      - DB_ENGINE=postgres
+      - POSTGRES_USER=mealie
+      - POSTGRES_PASSWORD=mealie
+      - POSTGRES_SERVER=db
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=mealie
+    volumes:
+      - app_data:/app/data/
+    networks:
+      proxy_apps:
+      default:
+    labels:
+      backups: "true"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=mealie
+      - POSTGRES_PASSWORD=mealie
+      - POSTGRES_DB=mealie
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      default:
+    labels:
+      backups: "true"
+
+volumes:
+  app_data:
+  db_data:
+
+networks:
+  proxy_apps:
+    name: proxy_apps
+    external: true
