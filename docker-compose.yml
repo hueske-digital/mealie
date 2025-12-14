@@ -37,7 +37,7 @@ services:
       ofelia.restart: "true"
       ofelia.enabled: "true"
       ofelia.job-exec.mealiedbbackup.schedule: "0 0 1 * * *"
-      ofelia.job-exec.mealiedbbackup.command: "sh -c 'pg_dumpall -U mealie -f /var/lib/postgresql/data/backup.sql'"
+      ofelia.job-exec.mealiedbbackup.command: "sh -c 'pg_dumpall -U mealie -f /var/lib/postgresql/backup.sql'"
     networks:
       default:
 
