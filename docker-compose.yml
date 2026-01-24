@@ -25,6 +25,7 @@ services:
       - OIDC_ADMIN_GROUP=${OIDC_ADMIN_GROUP:-mealie_admin}
       - OIDC_AUTO_REDIRECT=${OIDC_AUTO_REDIRECT:-True}
       - OIDC_REMEMBER_ME=${OIDC_REMEMBER_ME:-True}
+      - ALLOW_PASSWORD_LOGIN=${ALLOW_PASSWORD_LOGIN:-True}
     volumes:
       - app_data:/app/data/
     networks:
