@@ -17,6 +17,14 @@ services:
       - CADDY_DOMAIN=${CADDY_DOMAIN}
       - CADDY_TYPE=${CADDY_TYPE:-external}
       - CADDY_PORT=${CADDY_PORT:-9000}
+      - OIDC_AUTH_ENABLED=${OIDC_AUTH_ENABLED:-false}
+      - OIDC_CONFIGURATION_URL=${OIDC_CONFIGURATION_URL:-}
+      - OIDC_CLIENT_ID=${OIDC_CLIENT_ID:-}
+      - OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET:-}
+      - OIDC_USER_GROUP=${OIDC_USER_GROUP:-mealie}
+      - OIDC_ADMIN_GROUP=${OIDC_ADMIN_GROUP:-mealie_admin}
+      - OIDC_AUTO_REDIRECT=${OIDC_AUTO_REDIRECT:-True}
+      - OIDC_REMEMBER_ME=${OIDC_REMEMBER_ME:-True}
     volumes:
       - app_data:/app/data/
     networks:
